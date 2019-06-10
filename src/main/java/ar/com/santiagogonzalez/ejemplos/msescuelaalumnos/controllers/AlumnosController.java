@@ -21,15 +21,30 @@ import ar.com.santiagogonzalez.ejemplos.msescuelaalumnos.domain.*;
  * @author santiago
 */
 public interface AlumnosController {
+    /**
+     * Trae todos los alumnos
+     * @return 
+     */
     @RequestMapping("/alumnos")
     Iterable<Alumno> getAllAlumnos();
     
+    /**
+     * Busca un alumno por ID
+     * @param dni
+     * @return 
+     */
     @RequestMapping("/alumnos/{dni}")
     Optional<Alumno> getAlumnoById(@PathVariable("dni") long dni);
     //@RequestMapping("/alumnos/{id}")
     //Alumno getAlumnoById(String id);
     
+    /**
+     * Crea un alumno en la BD
+     * @param alumno 
+     */
     @RequestMapping(value = "/alumnos", method = RequestMethod.POST)
     void createAlumno(@RequestBody Alumno alumno);
-    
+
+    @RequestMapping(value = "/alumnos/{dni}", method = RequestMethod.DELETE)
+    void deleteAlumnoById(@PathVariable("dni") long dni);
 }
